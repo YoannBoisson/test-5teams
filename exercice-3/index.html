@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Read Text File</title>
+  </head>
+
+  <body>
+    <input type="file" name="inputfile" id="inputfile" />
+    <br />
+
+    <pre id="output"></pre>
+
+    <script type="text/javascript">
+      document
+        .getElementById("inputfile")
+        .addEventListener("change", function () {
+          const fileReader = new FileReader();
+          fileReader.onload = function () {
+            document.getElementById("output").textContent = fileReader.result;
+            const text = fileReader.result;
+            const formattedText = text.replace(/\s/g, '\n'); // Replace spaces with line breaks
+            document.getElementById("output").textContent = formattedText;
+          };
+          fileReader.readAsText(this.files[0]);
+        });
+    </script>
+  </body>
+</html>
